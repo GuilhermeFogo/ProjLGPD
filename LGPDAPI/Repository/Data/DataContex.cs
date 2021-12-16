@@ -14,6 +14,11 @@ namespace LGPD.Repository.Data
 
         public DbSet<Usuario> Usuarios { get; set; }
 
+        public DbSet<Processo> Processos { get; set; }
+        public DbSet<Dados> Dados { get; set; }
+
+        public DbSet<DataMapping> DataMappings { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=localhost;Database=ProjetoLGPD;User ID =sa; Password=123456;Persist Security Info=True;MultipleActiveResultSets=True");
