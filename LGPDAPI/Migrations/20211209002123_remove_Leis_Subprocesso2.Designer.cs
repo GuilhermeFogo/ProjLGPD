@@ -4,14 +4,16 @@ using LGPD.Repository.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LGPD.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20211209002123_remove_Leis_Subprocesso2")]
+    partial class remove_Leis_Subprocesso2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,32 +66,6 @@ namespace LGPD.Migrations
                     b.HasKey("id_dado");
 
                     b.ToTable("Dados");
-                });
-
-            modelBuilder.Entity("LGPD.Modal.DataMapping", b =>
-                {
-                    b.Property<int>("Id_DataMapping")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Area")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Empresa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ProcessoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Responsavel")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id_DataMapping");
-
-                    b.HasIndex("ProcessoId");
-
-                    b.ToTable("DataMappings");
                 });
 
             modelBuilder.Entity("LGPD.Modal.Endereco", b =>
@@ -150,7 +126,7 @@ namespace LGPD.Migrations
                     b.Property<string>("Destino_final")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Macroprocesso")
+                    b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Operador")
@@ -197,15 +173,6 @@ namespace LGPD.Migrations
                         .HasForeignKey("EnderecoId");
 
                     b.Navigation("Endereco");
-                });
-
-            modelBuilder.Entity("LGPD.Modal.DataMapping", b =>
-                {
-                    b.HasOne("LGPD.Modal.Processo", "Processo")
-                        .WithMany()
-                        .HasForeignKey("ProcessoId");
-
-                    b.Navigation("Processo");
                 });
 
             modelBuilder.Entity("LGPD.Modal.Processo", b =>

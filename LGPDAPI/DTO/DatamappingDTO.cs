@@ -11,14 +11,12 @@ namespace LGPD.DTO
     {
         public int IdProceso { get; set; }
         public string Nome { get; set; }
-        public int id_subprocesso { get; set; }
         public string Subproceso_nome { get; set; }
         public string Area_subprocesso { get; set; }
         public string Descricao_processo { get; set; }
         public int id_dado { get; set; }
         public string Dados_regulares { get; set; }
         public string Dados_Senssiveis { get; set; }
-        public int Id_lei { get; set; }
         public string BaseLegal_lei { get; set; }
         public string descricaoBase_lei { get; set; }
         public string Compartilhamento_interno { get; set; }

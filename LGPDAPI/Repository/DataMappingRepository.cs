@@ -26,23 +26,23 @@ namespace LGPD.Repository
             this.dataContext.Remove(dataMapping);
         }
 
-        public IEnumerable<DataMapping> Pesquisa_PorArea(string area)
+        public DataMapping Pesquisa_PorArea(string area)
         {
             var pesquisa = this.JoinDatamapping().Where(x => x.Area == area);
-            return pesquisa.AsEnumerable();
+            return pesquisa.AsEnumerable().FirstOrDefault();
         }
 
-        public IEnumerable<DataMapping> Pesquisa_PorEmpresa(string empresa)
+        public DataMapping Pesquisa_PorEmpresa(string empresa)
         {
             var pesquisa = this.JoinDatamapping().Where(x => x.Empresa == empresa);
-            return pesquisa.AsEnumerable();
+            return pesquisa.AsEnumerable().FirstOrDefault();
         }
 
-        public IEnumerable<DataMapping> Pesquisa_PorEmpresa_e_Area(string empresa, string area)
+        public DataMapping Pesquisa_PorEmpresa_e_Area(string empresa, string area)
         {
             var pesquisa = this.JoinDatamapping().Where(x => x.Empresa == empresa && x.Area == area);
 
-            return pesquisa.AsEnumerable();
+            return pesquisa.AsEnumerable().FirstOrDefault();
             
         }
 
@@ -92,6 +92,12 @@ namespace LGPD.Repository
 
 
             return JoinDados;
+        }
+
+        public IEnumerable<DataMapping> ListarTodos()
+        {
+            return this.JoinDatamapping().AsEnumerable();
+            
         }
     }
 }

@@ -14,9 +14,10 @@ namespace LGPD.Repository.Interfaces
 
         public void Delete(DataMapping dataMapping);
 
-        public IEnumerable<DataMapping> Pesquisa_PorEmpresa(string empresa);
-        public IEnumerable<DataMapping> Pesquisa_PorArea(string area);
-        public IEnumerable<DataMapping> Pesquisa_PorEmpresa_e_Area(string empresa, string area);
+        public IEnumerable<DataMapping> ListarTodos();
+        public DataMapping Pesquisa_PorEmpresa(string empresa);
+        public DataMapping Pesquisa_PorArea(string area);
+        public DataMapping Pesquisa_PorEmpresa_e_Area(string empresa, string area);
 
     }
 }

@@ -86,7 +86,7 @@ namespace LGPD
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CRMAPI v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "`LGPDAPI v1");
             });
             app.UseCors();
             app.UseRouting();
@@ -106,8 +106,11 @@ namespace LGPD
             services.AddDbContext<DataContext>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IClienteService, ClienteService>();
+            services.AddScoped<IDataMappingRepository, DataMappingRepository>();
+            services.AddScoped<IDataMappingService, DataMappingService>();
 
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IProcessoRepository, ProcessosRepository>();
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IAutenticacao, AutenticacaoService>();
             services.AddScoped<ITokenService, MeuTokenService>();

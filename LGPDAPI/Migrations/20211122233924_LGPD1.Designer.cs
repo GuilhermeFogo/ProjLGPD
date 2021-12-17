@@ -4,14 +4,16 @@ using LGPD.Repository.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LGPD.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20211122233924_LGPD1")]
+    partial class LGPD1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,32 +68,6 @@ namespace LGPD.Migrations
                     b.ToTable("Dados");
                 });
 
-            modelBuilder.Entity("LGPD.Modal.DataMapping", b =>
-                {
-                    b.Property<int>("Id_DataMapping")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Area")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Empresa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ProcessoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Responsavel")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id_DataMapping");
-
-                    b.HasIndex("ProcessoId");
-
-                    b.ToTable("DataMappings");
-                });
-
             modelBuilder.Entity("LGPD.Modal.Endereco", b =>
                 {
                     b.Property<int>("Id")
@@ -116,6 +92,24 @@ namespace LGPD.Migrations
                     b.ToTable("Enderecos");
                 });
 
+            modelBuilder.Entity("LGPD.Modal.Leis", b =>
+                {
+                    b.Property<int>("Id_lei")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BaseLegal")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("descricaoBase")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id_lei");
+
+                    b.ToTable("Leis");
+                });
+
             modelBuilder.Entity("LGPD.Modal.Processo", b =>
                 {
                     b.Property<int>("Id")
@@ -127,9 +121,6 @@ namespace LGPD.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Armazenamento_Fisico")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BaseLegal")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Compartilhamento_Externo")
@@ -150,23 +141,45 @@ namespace LGPD.Migrations
                     b.Property<string>("Destino_final")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Macroprocesso")
+                    b.Property<int?>("LeisId_lei")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Operador")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Subprocesso")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("descricaoBase")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Subprocessoid_subprocesso")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Dadoid_dado");
 
+                    b.HasIndex("LeisId_lei");
+
+                    b.HasIndex("Subprocessoid_subprocesso");
+
                     b.ToTable("Processos");
+                });
+
+            modelBuilder.Entity("LGPD.Modal.Subprocesso", b =>
+                {
+                    b.Property<int>("id_subprocesso")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Area")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id_subprocesso");
+
+                    b.ToTable("Subprocesso");
                 });
 
             modelBuilder.Entity("LGPD.Modal.Usuario", b =>
@@ -199,22 +212,25 @@ namespace LGPD.Migrations
                     b.Navigation("Endereco");
                 });
 
-            modelBuilder.Entity("LGPD.Modal.DataMapping", b =>
-                {
-                    b.HasOne("LGPD.Modal.Processo", "Processo")
-                        .WithMany()
-                        .HasForeignKey("ProcessoId");
-
-                    b.Navigation("Processo");
-                });
-
             modelBuilder.Entity("LGPD.Modal.Processo", b =>
                 {
                     b.HasOne("LGPD.Modal.Dados", "Dado")
                         .WithMany()
                         .HasForeignKey("Dadoid_dado");
 
+                    b.HasOne("LGPD.Modal.Leis", "Leis")
+                        .WithMany()
+                        .HasForeignKey("LeisId_lei");
+
+                    b.HasOne("LGPD.Modal.Subprocesso", "Subprocesso")
+                        .WithMany()
+                        .HasForeignKey("Subprocessoid_subprocesso");
+
                     b.Navigation("Dado");
+
+                    b.Navigation("Leis");
+
+                    b.Navigation("Subprocesso");
                 });
 #pragma warning restore 612, 618
         }
