@@ -88,6 +88,7 @@ namespace LGPD
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "`LGPDAPI v1");
             });
+            app.UseAuthentication();
             app.UseCors();
             app.UseRouting();
 
@@ -129,7 +130,7 @@ namespace LGPD
                     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 }).AddJwtBearer(token =>
                 {
-                    token.RequireHttpsMetadata = false;
+                    token.RequireHttpsMetadata = true;
                     token.SaveToken = true;
                     token.TokenValidationParameters = new TokenValidationParameters
                     {

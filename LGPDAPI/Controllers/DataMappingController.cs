@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace LGPD.Controllers
 {
     [Route("api/[controller]")]
@@ -22,16 +20,17 @@ namespace LGPD.Controllers
             this.DataMappingService = dataMappingService;
         }
 
-        [HttpGet]
-        [Authorize(Roles = "Funcionario, Gerente")]
-        public DatamappingDTO PesquisaTeste(string area)
+        [Route("[controller]/Pesquisa")]
+        [HttpPost]
+        [Authorize(Roles = "Funcionario, ADM")]
+        public DatamappingDTO PesquisaTeste([FromBody]DatamappingDTO area)
         {
-            return this.DataMappingService.PesquisarPorArea(area);
+            return this.DataMappingService.PesquisarPorArea(area.Area);
         }
 
         [HttpPost]
-        [Authorize(Roles = "Funcionario, Gerente")]
-        public IActionResult Save(DatamappingDTO datamappingDTO)
+        [Authorize(Roles = "Funcionario, ADM")]
+        public IActionResult Save([FromBody] DatamappingDTO datamappingDTO)
         {
             this.DataMappingService.Save(datamappingDTO);
             return Ok();

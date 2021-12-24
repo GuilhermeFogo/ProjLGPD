@@ -18,14 +18,14 @@ namespace LGPD.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Funcionario, Gerente")]
+        [Authorize(Roles = "Funcionario, ADM")]
         public IEnumerable<ClienteDTO> ListaTodos()
         {
             return this.clienteService.ListarTodos();
         }
 
         [HttpPost]
-        [Authorize(Roles =  "Funcionario, Gerente")]
+        [Authorize(Roles =  "Funcionario, ADM")]
         public IActionResult Post([FromBody] ClienteDTO value)
         {
             if (value !=null)
@@ -41,7 +41,7 @@ namespace LGPD.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Gerente")]
+        [Authorize(Roles = "ADM")]
         public IActionResult Put(int id, [FromBody] ClienteDTO cliente)
         {
             if (cliente != null && cliente.Id !=id)
@@ -56,7 +56,7 @@ namespace LGPD.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Gerente")]
+        [Authorize(Roles = "ADM")]
         public IActionResult Delete(int id)
         {
             if (id > 0)

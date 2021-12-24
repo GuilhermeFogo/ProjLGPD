@@ -22,7 +22,7 @@ namespace LGPD.Controllers
 
         // GET: api/<UsuarioController>
         [HttpGet]
-        [Authorize(Roles ="Funcionario, Gerente")]
+        [Authorize(Roles ="Funcionario, ADM")]
         public IEnumerable<UsuarioDTO> Get()
         {
             return this.usuarioServices.ListarTodos();
@@ -30,7 +30,7 @@ namespace LGPD.Controllers
 
         // GET api/<UsuarioController>/5
         [HttpGet("{id}")]
-        [Authorize(Roles ="Funcionario, Gerente")]
+        [Authorize(Roles ="ADM, Funcionario")]
         public IActionResult GetUsuer(int id)
         {
             if (id > 0)
@@ -46,7 +46,7 @@ namespace LGPD.Controllers
 
         // POST api/<UsuarioController>
         [HttpPost]
-        [Authorize(Roles ="Funcionario, Gerente")]
+        [Authorize(Roles ="Funcionario, ADM")]
         public IActionResult Post([FromBody] UsuarioDTO value)
         {
             if(value != null)
@@ -62,7 +62,7 @@ namespace LGPD.Controllers
 
         // PUT api/<UsuarioController>/5
         [HttpPut("{id}")]
-        [Authorize(Roles = "Gerente")]
+        [Authorize(Roles = "ADM")]
         public IActionResult Put(int id, [FromBody] UsuarioDTO usuarioDTO)
         {
             if(usuarioDTO!=null && id > 0)
@@ -83,7 +83,7 @@ namespace LGPD.Controllers
 
         // DELETE api/<UsuarioController>/5
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Gerente")]
+        [Authorize(Roles = "ADM")]
         public IActionResult Delete(int id)
         {
             if (id > 0)
