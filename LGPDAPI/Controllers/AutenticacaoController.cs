@@ -28,7 +28,14 @@ namespace LGPD.Controllers
             else
             {
                 var token = this.autenticacao.Autenticar(user);
-                return Ok(token);
+                if(token!= null)
+                {
+                    return Ok(token);
+                }
+                else
+                {
+                    return BadRequest("Usuario não existe");
+                }
             }
 
 

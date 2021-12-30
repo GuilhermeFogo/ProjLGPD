@@ -24,14 +24,19 @@ namespace LGPD.Services
         {
             try
             {
-                var usu = this.usuarioRepository.PesquisaUsuario(usuario.Nome);
-                if (usu.Nome == usuario.Nome && usu.Senha == usuario.Senha)
-                {
-                    var user = this.ParseUsuario(usu);
-                    return this.autenticacaoService.CriarToken(user);
-                }
 
-                return "Nome ou Senha Invalidos";
+                var usu = this.usuarioRepository.PesquisaUsuario(usuario.Nome);
+                if (usu != null)
+                {
+                    if (usu.Nome == usuario.Nome && usu.Senha == usuario.Senha)
+                    {
+                        var user = this.ParseUsuario(usu);
+                        return this.autenticacaoService.CriarToken(user);
+                    }
+
+                    return null;
+                }
+                return null;
             }
             catch (Exception)
             {

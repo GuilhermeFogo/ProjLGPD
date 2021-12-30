@@ -1,3 +1,5 @@
+import { AuthService } from './../../Services/HTTP/Auth/auth.service';
+import { CookieService } from './../../Services/cookie/cookie.service';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../Modal/User';
@@ -13,10 +15,14 @@ export class FormLoginComponent implements OnInit {
   private fb: FormBuilder;
   form!: FormGroup;
   private route: Router;
+  private cookie: CookieService;
+  private Auth: AuthService;
 
-  constructor(fb: FormBuilder, route: Router) {
+  constructor(fb: FormBuilder, route: Router, CookieService: CookieService, Auth: AuthService) {
     this.fb = fb;
     this.route = route;
+    this.cookie = CookieService
+    this.Auth = Auth;
   }
 
   
@@ -39,9 +45,12 @@ export class FormLoginComponent implements OnInit {
       senha: this.f.pass.value,
       role: ""
     });
-    console.log(user);
-    
-    this.route.navigateByUrl("/teste");
+    const expires =  this.cookie.Expires(0,0,2);
+
+    this.Auth.Autenticar(user).subscribe(x=>{
+      this.cookie.CreateCookie(x, expires);
+      this.route.navigateByUrl("/teste");
+    });
     
   }
 }

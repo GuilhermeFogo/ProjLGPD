@@ -32,6 +32,7 @@ namespace LGPD
     }
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -73,8 +74,16 @@ namespace LGPD
                     }
                 });
             });
-
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.AllowAnyOrigin()
+                                        .AllowAnyMethod()
+                                        .AllowAnyHeader();
+                                  });
+            });
             this.Autenticacao(services);
 
 
@@ -89,7 +98,7 @@ namespace LGPD
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "`LGPDAPI v1");
             });
             app.UseAuthentication();
-            app.UseCors();
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseRouting();
 
             app.UseAuthorization();
