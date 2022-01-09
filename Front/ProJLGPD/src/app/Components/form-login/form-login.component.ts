@@ -1,3 +1,4 @@
+import { UsuariosServiceService } from './../../Services/HTTP/Usuarios/usuarios-service.service';
 import { AuthService } from './../../Services/HTTP/Auth/auth.service';
 import { CookieService } from './../../Services/cookie/cookie.service';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -17,12 +18,14 @@ export class FormLoginComponent implements OnInit {
   private route: Router;
   private cookie: CookieService;
   private Auth: AuthService;
+  private teste: UsuariosServiceService;
 
-  constructor(fb: FormBuilder, route: Router, CookieService: CookieService, Auth: AuthService) {
+  constructor(fb: FormBuilder, route: Router, CookieService: CookieService, Auth: AuthService, teste: UsuariosServiceService) {
     this.fb = fb;
     this.route = route;
     this.cookie = CookieService
     this.Auth = Auth;
+    this.teste = teste;
   }
 
   
@@ -46,11 +49,17 @@ export class FormLoginComponent implements OnInit {
       role: ""
     });
     const expires =  this.cookie.Expires(0,0,2);
-
+    
     this.Auth.Autenticar(user).subscribe(x=>{
       this.cookie.CreateCookie(x, expires);
-      this.route.navigateByUrl("/teste");
+      this.route.navigateByUrl("/DashBoard");
+    },e => console.log(e));
+  }
+
+
+  public Teste(){
+    this.teste.ListaUser().subscribe(a=>{
+      console.log(a);
     });
-    
   }
 }

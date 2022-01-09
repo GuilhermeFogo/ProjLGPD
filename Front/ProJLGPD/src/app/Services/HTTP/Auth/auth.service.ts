@@ -1,7 +1,7 @@
 import { User } from './../../../Modal/User';
 import { environment } from './../../../../environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +14,11 @@ export class AuthService {
   }
 
   public Autenticar(user: User) {
-    return this.http.post(this.url, user);
+    const myheader = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post(this.url, user,{
+      headers: myheader,
+      observe:'body',
+      responseType: 'text' as 'json'
+    });
   }
 }
