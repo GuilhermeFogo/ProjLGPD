@@ -1,25 +1,26 @@
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { CookieService } from './../cookie/cookie.service';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GuardService implements CanActivate {
-  private cooke: CookieService
-  private Router: Router
+export class LoginBlockService implements CanActivate {
+  private cookie: CookieService;
+  private Router: Router;
   constructor(cookie: CookieService, Router: Router) {
-    this.cooke = cookie
     this.Router = Router;
-  }
+    this.cookie = cookie;
+   }
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    const verdade = this.cooke.ExistCookie('Session');
-    if (verdade) {
-      return true;
-    } else {
-      this.Router.navigateByUrl('');
+    if(this.cookie.ExistCookie("Session")){
+      this.Router.navigateByUrl('/DashBoard');
       return false;
+    } else{
+
+      return true;
     }
   }
 }

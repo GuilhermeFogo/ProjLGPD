@@ -55,11 +55,4 @@ export class FormLoginComponent implements OnInit {
       this.route.navigateByUrl("/DashBoard");
     },e => console.log(e));
   }
-
-
-  public Teste(){
-    this.teste.ListaUser().subscribe(a=>{
-      console.log(a);
-    });
-  }
 }
