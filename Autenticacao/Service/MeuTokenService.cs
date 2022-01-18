@@ -22,11 +22,6 @@ namespace Autenticacao.Service
             this.secret = JsonConvert.DeserializeObject<Secret>(dadosFile);
         }
 
-        public void AnalisarToken()
-        {
-            throw new NotImplementedException();
-        }
-
         public string CriarToken(UsuarioAutentic usuario)
         {
             // criadno token handler a classe que inicia tudo
@@ -54,11 +49,6 @@ namespace Autenticacao.Service
             var token = tokenhandler.CreateToken(tokenDescription);
             // retornando em modo string 
             return tokenhandler.WriteToken(token);
-        }
-
-        public void DestruirToken()
-        {
-            throw new NotImplementedException();
         }
     }
 }
