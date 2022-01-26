@@ -21,7 +21,11 @@ namespace SystemAPI.Mensagero
         }
         public void EnviarEmail(string para, string asssunto, string mensagem)
         {
-            var mail = new MailMessage( this.emails.Email, para,asssunto,mensagem);
+            var mail = new MailMessage();
+            mail.From = new MailAddress(this.emails.Email);
+            mail.To.Add(new MailAddress(para));
+            mail.Subject = asssunto;
+            mail.Body = mensagem;
             ConfigurandoEnviandoEmail(mail);
         }
 
@@ -35,8 +39,9 @@ namespace SystemAPI.Mensagero
 
         public void EnviarEmailHTML(string para, string assunto, string HTML)
         {
-            var mail = new MailMessage(this.emails.Email, para);
-            
+            var mail = new MailMessage(this.emails.Email, para,assunto,HTML);
+            mail.IsBodyHtml = true;
+            ConfigurandoEnviandoEmail(mail);
         }
 
         private void ConfigurandoEnviandoEmail(MailMessage mail)

@@ -7,16 +7,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SystemAPI.Mensagero;
 
 namespace LGPD.Services
 {
     public class UsuarioService : IUsuarioService
     {
         private readonly IUsuarioRepository usuarioRepository;
+        private readonly IMensageiro mensageiro;
 
-        public UsuarioService(IUsuarioRepository usuarioRepository)
+        public UsuarioService(IUsuarioRepository usuarioRepository, IMensageiro mensageiro)
         {
             this.usuarioRepository = usuarioRepository;
+            this.mensageiro = mensageiro;
         }
 
         public void Atualizar(UsuarioDTO user)
@@ -54,6 +57,10 @@ namespace LGPD.Services
         {
             var usu = ParseUsuarioDTO(user);
             this.usuarioRepository.Save(usu);
+            string assunto = "Boas Vindas";
+            string mensagem = $"Seja Bem Vindo(a) {usu.Nome} ao programa de LGPD Suas credenciais de acesso são: Nome:{usu.Nome} e Senha:{usu.Senha}";
+
+            this.mensageiro.EnviarEmail(usu.Email, assunto, mensagem);
         }
 
 
@@ -64,7 +71,8 @@ namespace LGPD.Services
                 Id = usuarioDTO.Id,
                 Nome = usuarioDTO.Nome,
                 Role = usuarioDTO.Role,
-                Senha = usuarioDTO.Senha
+                Senha = usuarioDTO.Senha,
+                Email = usuarioDTO.Email
             };
         }
 
@@ -75,7 +83,8 @@ namespace LGPD.Services
                 Id = usuario.Id, 
                 Nome = usuario.Nome, 
                 Role = usuario.Role,
-                Senha = usuario.Senha
+                Senha = usuario.Senha,
+                Email = usuario.Email
             };
         }
 

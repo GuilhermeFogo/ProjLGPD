@@ -22,6 +22,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SystemAPI.Mensagero;
 
 namespace LGPD
 {
@@ -124,6 +125,7 @@ namespace LGPD
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IAutenticacao, AutenticacaoService>();
             services.AddScoped<ITokenService, MeuTokenService>();
+            services.AddScoped<IMensageiro, Mensageiro>();
 
         }
 

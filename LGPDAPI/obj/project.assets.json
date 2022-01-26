@@ -1809,6 +1809,19 @@
         "runtime": {
           "bin/placeholder/Autenticacao.dll": {}
         }
+      },
+      "MensageiroSys/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "bin/placeholder/MensageiroSys.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MensageiroSys.dll": {}
+        }
       }
     }
   },
@@ -6277,11 +6290,17 @@
       "type": "project",
       "path": "../Autenticacao/Autenticacao.csproj",
       "msbuildProject": "../Autenticacao/Autenticacao.csproj"
+    },
+    "MensageiroSys/1.0.0": {
+      "type": "project",
+      "path": "../MensageiroSys/MensageiroSys.csproj",
+      "msbuildProject": "../MensageiroSys/MensageiroSys.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "Autenticacao >= 1.0.0",
+      "MensageiroSys >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 5.0.11",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.11",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.11",
@@ -6328,6 +6347,9 @@
           "projectReferences": {
             "C:\\Users\\Guilherme\\Desktop\\MeuTreinamento\\Projeto LGPD\\Autenticacao\\Autenticacao.csproj": {
               "projectPath": "C:\\Users\\Guilherme\\Desktop\\MeuTreinamento\\Projeto LGPD\\Autenticacao\\Autenticacao.csproj"
+            },
+            "C:\\Users\\Guilherme\\Desktop\\MeuTreinamento\\Projeto LGPD\\MensageiroSys\\MensageiroSys.csproj": {
+              "projectPath": "C:\\Users\\Guilherme\\Desktop\\MeuTreinamento\\Projeto LGPD\\MensageiroSys\\MensageiroSys.csproj"
             }
           }
         }

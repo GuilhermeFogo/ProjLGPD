@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Autenticacao\Autenticacao.csproj" />
+    <ProjectReference Include="..\MensageiroSys\MensageiroSys.csproj" />
   </ItemGroup>
 
 </Project>
