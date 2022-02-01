@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { UsuariosServiceService } from "../../Services/HTTP/Usuarios/usuarios-service.service";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  public home = "homw";
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

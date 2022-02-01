@@ -43,7 +43,6 @@ namespace LGPD.Services
                 var dto = ParseUsuario(item);
                 lista.Add(dto);
             }
-            lista.Sort();
             return lista;
         }
 

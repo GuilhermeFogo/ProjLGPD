@@ -2,7 +2,6 @@ import { CookieService } from './../../cookie/cookie.service';
 import { environment } from './../../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +17,7 @@ export class UsuariosServiceService {
   }
 
   public ListaUser() {
-    const cookies = this.cookie.getValueCookie("Session");
+    const cookies: string ="Bearer"+" "+ this.cookie.getValueCookie("Session");
 
     const header = new HttpHeaders().append("Authorization", cookies);
     return this.http.get(this.url,{

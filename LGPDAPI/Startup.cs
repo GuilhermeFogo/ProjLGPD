@@ -98,10 +98,10 @@ namespace LGPD
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "`LGPDAPI v1");
             });
-            app.UseAuthentication();
             app.UseCors(MyAllowSpecificOrigins);
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
