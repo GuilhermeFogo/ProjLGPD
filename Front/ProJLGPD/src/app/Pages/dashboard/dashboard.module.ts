@@ -1,9 +1,7 @@
+import { MenuModule } from './../../Components/menu/menu.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from '../dashboard/dashboard.component';
-import { BtnSairModule } from 'src/app/Components/btn-sair/btn-sair.module';
-import { HttpClientModule } from '@angular/common/http';
-
 
 
 @NgModule({
@@ -12,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     CommonModule,
-    BtnSairModule
+    MenuModule
   ], exports:[DashboardComponent]
 })
 export class DashboardModule { }
