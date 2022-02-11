@@ -4,6 +4,7 @@ using LGPD.DTO;
 using LGPD.Modal;
 using LGPD.Repository.Interfaces;
 using LGPD.Services.Interfaces;
+using LGPD.Transformar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace LGPD.Services
                 {
                     if (usu.Nome == usuario.Nome && usu.Senha == usuario.Senha)
                     {
-                        var user = this.ParseUsuario(usu);
+                        var user = Parsers.ParseUsuarioAuth(usu);
                         return this.autenticacaoService.CriarToken(user);
                     }
 
@@ -43,16 +44,6 @@ namespace LGPD.Services
                 return null;
             }
 
-        }
-
-        private UsuarioAutentic ParseUsuario(Usuario usuario)
-        {
-            return new UsuarioAutentic
-            {
-                Nome = usuario.Nome,
-                Role = usuario.Role,
-                Senha = usuario.Senha
-            };
         }
     }
 }

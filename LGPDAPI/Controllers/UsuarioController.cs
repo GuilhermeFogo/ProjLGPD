@@ -13,10 +13,12 @@ namespace LGPD.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService usuarioServices;
+        private readonly IMensageiroService mensageiroService;
 
-        public UsuarioController(IUsuarioService usuarioServices)
+        public UsuarioController(IUsuarioService usuarioServices, IMensageiroService mensageiroService)
         {
             this.usuarioServices = usuarioServices;
+            this.mensageiroService = mensageiroService;
         }
 
 
@@ -52,6 +54,7 @@ namespace LGPD.Controllers
             if(value != null)
             {
                 this.usuarioServices.Save(value);
+                this.mensageiroService.EmailNovoUsuario(value);
                 return Ok($"Usuario {value.Nome} Criado");
             }
             else

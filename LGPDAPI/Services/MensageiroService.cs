@@ -1,8 +1,5 @@
-﻿using LGPD.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using LGPD.DTO;
+using LGPD.Services.Interfaces;
 using SystemAPI.Mensagero;
 
 namespace LGPD.Services
@@ -21,11 +18,13 @@ namespace LGPD.Services
             this.mensageiro.EnviarEmail(para, assunto, menagem);
         }
 
-        public void EmailPadrao(string para)
+        public void EmailNovoUsuario(UsuarioDTO usuario)
         {
-            string assunto = "Email padrao";
-            string mensagem = "Seja bem Vindo(a) ao sistema LGPD";
-            this.mensageiro.EnviarEmail(para,assunto,mensagem);
+            string assunto = "<h1>Boas Vindas</h1>";
+            string mensagem = $"<p>Seja Bem Vindo(a) {usuario.Nome}</p> <p>Ao programa de LGPD Suas credenciais de acesso são:</p> <p>Nome:{usuario.Nome}</p>" +
+                $"<p> Senha:{usuario.Senha}</p>";
+
+            this.mensageiro.EnviarEmailHTML(usuario.Email, assunto, mensagem);
         }
     }
 }
