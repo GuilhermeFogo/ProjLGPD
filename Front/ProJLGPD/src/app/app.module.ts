@@ -1,3 +1,4 @@
+import { ErrorModule } from './Pages/error/error.module';
 import { DashboardModule } from './Pages/dashboard/dashboard.module';
 import { LoginModule } from './Pages/login/login.module';
 import { NgModule } from '@angular/core';
@@ -16,7 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     LoginModule,
     BrowserAnimationsModule,
-    DashboardModule
+    DashboardModule,
+    ErrorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,4 @@
+import { ErrorComponent } from './Pages/error/error.component';
 import { LoginBlockService } from './Services/guard/login-block.service';
 import { GuardService } from './Services/guard/guard.service';
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
@@ -11,7 +12,7 @@ const routes: Routes = [
   },
   {path:'DashBoard', component: DashboardComponent, canActivate: [GuardService]},
 
-  {path:'**', component: DashboardComponent}
+  {path:'**', component: ErrorComponent}
 
 ];
 
