@@ -37,7 +37,7 @@ export class FormLoginComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       nameUser:["", Validators.required],
-      pass: ["", Validators.required]
+      pass: ["", Validators.required, Validators.minLength(6)]
     });
   }
 
