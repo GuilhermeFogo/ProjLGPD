@@ -25,10 +25,10 @@ namespace LGPD.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles =  "Funcionario, ADM")]
+        [Authorize(Roles = "Funcionario, ADM")]
         public IActionResult Post([FromBody] ClienteDTO value)
         {
-            if (value !=null)
+            if (value != null)
             {
                 this.clienteService.Save(value);
                 return Ok();
@@ -44,7 +44,7 @@ namespace LGPD.Controllers
         [Authorize(Roles = "ADM")]
         public IActionResult Put(int id, [FromBody] ClienteDTO cliente)
         {
-            if (cliente != null && cliente.Id !=id)
+            if (cliente != null && cliente.Id != id)
             {
                 this.clienteService.Atualizar(cliente);
                 return Ok();

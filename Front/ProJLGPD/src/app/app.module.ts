@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GerenciaUserModule } from './Pages/gerencia-user/gerencia-user.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginModule,
     BrowserAnimationsModule,
     DashboardModule,
-    ErrorModule
+    ErrorModule,
+    GerenciaUserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

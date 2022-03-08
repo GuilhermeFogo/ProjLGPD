@@ -40,7 +40,8 @@ namespace LGPD.Services
             foreach (var item in usu)
             {
                 var dto = Parsers.ParseUsuario(item);
-                lista.Add(dto);
+                var dtohide = Parsers.HidePass(dto);
+                lista.Add(dtohide);
             }
             return lista;
         }

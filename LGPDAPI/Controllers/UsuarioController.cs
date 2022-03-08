@@ -24,7 +24,7 @@ namespace LGPD.Controllers
 
         // GET: api/<UsuarioController>
         [HttpGet]
-        [Authorize(Roles ="Funcionario, ADM")]
+        [Authorize(Roles = "Funcionario, ADM")]
         public IEnumerable<UsuarioDTO> Get()
         {
             return this.usuarioServices.ListarTodos();
@@ -32,12 +32,12 @@ namespace LGPD.Controllers
 
         // GET api/<UsuarioController>/5
         [HttpGet("{id}")]
-        [Authorize(Roles ="ADM, Funcionario")]
+        [Authorize(Roles = "ADM, Funcionario")]
         public IActionResult GetUsuer(int id)
         {
             if (id > 0)
             {
-               var dto = this.usuarioServices.PesquisarUsuario(id);
+                var dto = this.usuarioServices.PesquisarUsuario(id);
                 return Ok(dto);
             }
             else
@@ -48,10 +48,10 @@ namespace LGPD.Controllers
 
         // POST api/<UsuarioController>
         [HttpPost]
-        [Authorize(Roles ="Funcionario, ADM")]
+        [Authorize(Roles = "Funcionario, ADM")]
         public IActionResult Post([FromBody] UsuarioDTO value)
         {
-            if(value != null)
+            if (value != null)
             {
                 this.usuarioServices.Save(value);
                 this.mensageiroService.EmailNovoUsuario(value);
@@ -68,10 +68,10 @@ namespace LGPD.Controllers
         [Authorize(Roles = "ADM")]
         public IActionResult Put(int id, [FromBody] UsuarioDTO usuarioDTO)
         {
-            if(usuarioDTO!=null && id > 0)
+            if (usuarioDTO != null && id > 0)
             {
                 var usarioDB = this.usuarioServices.PesquisarUsuario(id);
-                if(usarioDB == usuarioDTO)
+                if (usarioDB == usuarioDTO)
                 {
                     this.usuarioServices.Atualizar(usuarioDTO);
                     return Ok($"Usuario {usuarioDTO.Nome} Alterado");

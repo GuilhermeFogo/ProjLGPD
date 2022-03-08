@@ -37,16 +37,17 @@ export class FormLoginComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       nameUser:["", Validators.required],
-      pass: ["", Validators.required, Validators.minLength(6)]
+      pass: ["", Validators.required]
     });
   }
 
   public OnSubmit() {
     const user = new User({
-      id: "0",
+      id: 0,
       nome: this.f.nameUser.value,
       senha: this.f.pass.value,
-      role: ""
+      role: "",
+      email: ""
     });
     const expires =  this.cookie.Expires(0,0,2);
     

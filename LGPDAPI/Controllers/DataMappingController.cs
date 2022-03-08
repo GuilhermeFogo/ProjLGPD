@@ -23,7 +23,7 @@ namespace LGPD.Controllers
         [Route("[controller]/Pesquisa")]
         [HttpPost]
         [Authorize(Roles = "Funcionario, ADM")]
-        public DatamappingDTO PesquisaTeste([FromBody]DatamappingDTO area)
+        public DatamappingDTO PesquisaTeste([FromBody] DatamappingDTO area)
         {
             return this.DataMappingService.PesquisarPorArea(area.Area);
         }

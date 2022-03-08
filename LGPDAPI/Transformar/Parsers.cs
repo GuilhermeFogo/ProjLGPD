@@ -34,6 +34,19 @@ namespace LGPD.Transformar
             };
         }
 
+
+        public static UsuarioDTO HidePass(UsuarioDTO usuario)
+        {
+            return new UsuarioDTO
+            {
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Role = usuario.Role,
+                Senha = "",
+                Email = usuario.Email
+            };
+        }
+
         public static DatamappingDTO ParseClass2DTO(DataMapping dataMapping)
         {
             return new DatamappingDTO

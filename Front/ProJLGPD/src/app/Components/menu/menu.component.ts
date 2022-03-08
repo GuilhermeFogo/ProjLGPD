@@ -25,12 +25,12 @@ export class MenuComponent implements OnInit {
       },
       {
         titulo:"Datamapping",
-        rota: "./DataMapping",
+        rota: "/DataMapping",
         display: false
       }, 
       {
         titulo: "Usuarios",
-        rota:"./Users",
+        rota:"/Users",
         display:false
       }
     ]
