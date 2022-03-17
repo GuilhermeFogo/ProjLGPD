@@ -58,10 +58,10 @@ export class GerenciaUserComponent implements OnInit {
   }
 
   private postUser(user: User) {
-    this.request.SaveUser(user).subscribe(
-      () => console.log("Cadastrado com Exito")
-
-    )
+    this.request.SaveUser(user).subscribe(x=>{
+      console.log("Cadastro com exito");
+      console.log(x);
+    })
   }
 
   private putUser(user: User) {

@@ -16,7 +16,7 @@ namespace LGPD.Transformar
             {
                 Id = usuarioDTO.Id,
                 Nome = usuarioDTO.Nome,
-                Role = usuarioDTO.Role,
+                Role = MyRolesINT(usuarioDTO.Role),
                 Senha = usuarioDTO.Senha,
                 Email = usuarioDTO.Email
             };
@@ -28,12 +28,46 @@ namespace LGPD.Transformar
             {
                 Id = usuario.Id,
                 Nome = usuario.Nome,
-                Role = usuario.Role,
+                Role = MyRolesstrig(usuario.Role),
                 Senha = usuario.Senha,
                 Email = usuario.Email
             };
         }
 
+
+        private static string MyRolesINT(int inteito)
+        {
+            switch (inteito)
+            {
+                case 1:
+                    return "Funcionario";
+                case 2:
+                    return "Cliente";
+                case 3:
+                    return "Gerente";
+                case 4:
+                    return "ADM";
+                default:
+                    return "Cliente";
+            }
+        }
+
+        private static int MyRolesstrig(string inteito)
+        {
+            switch (inteito)
+            {
+                case "Funcionario":
+                    return 1;
+                case "Cliente":
+                    return 2;
+                case "Gerente":
+                    return 3;
+                case "ADM":
+                    return 4;
+                default:
+                    return 2;
+            }
+        }
 
         public static UsuarioDTO HidePass(UsuarioDTO usuario)
         {

@@ -2,7 +2,7 @@ export class User {
     readonly id: number
     readonly nome: string;
     readonly senha: string;
-    readonly role: string;
+    readonly role: number;
     readonly email: string
 
     public get Nome(): string {
@@ -17,7 +17,7 @@ export class User {
         return this.id;
     }
 
-    public get Role(): string {
+    public get Role(): number {
         return this.role;
     }
 
@@ -25,7 +25,7 @@ export class User {
         return this.email;
     }
 
-    constructor({ nome, senha, id, role, email}: { nome: string, senha: string, id: number, role: string, email: string}) {
+    constructor({ nome, senha, id, role, email}: { nome: string, senha: string, id: number, role: number, email: string}) {
         this.nome = nome;
         this.senha = senha;
         this.id = id;

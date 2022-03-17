@@ -12,24 +12,22 @@ import { HelperRequests } from 'src/app/Helper/helper-requests';
 export class UsuariosServiceService extends HelperRequests {
   private http: HttpClient;
   private url: string;
-  private cookies: string;
   constructor(http: HttpClient, cookie: CookieService) {
     super(cookie);
     this.http = http;
     this.url = environment.Local + "/api/Usuario";
-    this.cookies =  this.Ajudarequest();
   }
 
   public ListaUser() {
 
-    const header = new HttpHeaders().append("Authorization", this.cookies);
+    const header = this.Ajudarequest();
     return this.http.get(this.url,{
       headers: header
     });
   }
 
   public SaveUser(usuario: User) {
-    const header = new HttpHeaders().append("Authorization", this.cookies);
+    const header = this.Ajudarequest();
     console.log(usuario);
     return this.http.post(this.url, usuario,{
       headers: header
@@ -37,17 +35,17 @@ export class UsuariosServiceService extends HelperRequests {
   }
 
   public UpdateUser(User:User) {
-    const header = new HttpHeaders().append("Authorization", this.cookies);
+    const header = this.Ajudarequest();
     return this.http.put(this.url, User,{
       headers: header
     });
   }
 
   public Delete(id: number){
-    const header = new HttpHeaders().append("Authorization", this.cookies);
+    const header = this.Ajudarequest();
     return this.http.delete(this.url,{
       headers: header,
       body: id
-    })
+    });
   }
 }

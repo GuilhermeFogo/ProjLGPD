@@ -46,19 +46,20 @@ namespace LGPD
             InjecaoDependencia(services);
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "LGPDAPI", Version = "v1" });
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Description =
-                        "JWT Authorization Header - utilizado com Bearer Authentication.\r\n\r\n" +
-                        "Digite 'Bearer' [espaço] e então seu token no campo abaixo.\r\n\r\n" +
-                        "Exemplo (informar sem as aspas): 'Bearer 12345abcdef'",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.Http,
-                    Scheme = "Bearer",
-                    BearerFormat = "JWT",
-                });
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "LGPDAPI", Version = "v1" });
+            var teste = new OpenApiSecurityScheme
+            {
+                Description =
+                    "JWT Authorization Header - utilizado com Bearer Authentication.\r\n\r\n" +
+                    "Digite 'Bearer' [espaço] e então seu token no campo abaixo.\r\n\r\n" +
+                    "Exemplo (informar sem as aspas): 'Bearer 12345abcdef'",
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.Http,
+                Scheme = "Bearer",
+                BearerFormat = "JWT",
+            };
+                c.AddSecurityDefinition("Bearer", teste);
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {

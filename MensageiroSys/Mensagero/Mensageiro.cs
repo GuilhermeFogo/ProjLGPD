@@ -56,6 +56,7 @@ namespace SystemAPI.Mensagero
                 // seu usuário e senha para autenticação
                 smtp.Credentials = new NetworkCredential(this.emails.Email, this.emails.Pass);
 
+                
                 // envia o e-mail
                 smtp.Send(mail);
             }

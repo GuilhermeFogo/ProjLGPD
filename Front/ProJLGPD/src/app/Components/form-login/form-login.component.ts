@@ -18,14 +18,12 @@ export class FormLoginComponent implements OnInit {
   private route: Router;
   private cookie: CookieService;
   private Auth: AuthService;
-  private teste: UsuariosServiceService;
-
-  constructor(fb: FormBuilder, route: Router, CookieService: CookieService, Auth: AuthService, teste: UsuariosServiceService) {
+  
+  constructor(fb: FormBuilder, route: Router, CookieService: CookieService, Auth: AuthService) {
     this.fb = fb;
     this.route = route;
     this.cookie = CookieService
     this.Auth = Auth;
-    this.teste = teste;
   }
 
   
@@ -46,7 +44,7 @@ export class FormLoginComponent implements OnInit {
       id: 0,
       nome: this.f.nameUser.value,
       senha: this.f.pass.value,
-      role: "",
+      role: 0,
       email: ""
     });
     const expires =  this.cookie.Expires(0,0,2);

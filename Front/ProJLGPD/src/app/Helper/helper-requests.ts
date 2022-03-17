@@ -1,3 +1,4 @@
+import { HttpHeaders } from "@angular/common/http";
 import { CookieService } from "../Services/cookie/cookie.service";
 
 export abstract class HelperRequests {
@@ -9,7 +10,7 @@ export abstract class HelperRequests {
 
     public Ajudarequest(){
         const cookies: string ="Bearer"+" "+ this.cookie.getValueCookie("Session");
-        return cookies;
+        return new HttpHeaders().append("Authorization", cookies).set('Content-Type', 'application/json; charset=utf-8');;
     }
 
 
