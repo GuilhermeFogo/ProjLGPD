@@ -128,7 +128,7 @@ namespace LGPD
             services.AddScoped<ITokenService, MeuTokenService>();
             services.AddScoped<IMensageiro, Mensageiro>();
             services.AddScoped<IMensageiroService, MensageiroService>();
-
+            services.AddScoped<IRelatorioService, RelatoriosService>();
         }
 
         private void Autenticacao(IServiceCollection services)

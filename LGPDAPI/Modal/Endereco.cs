@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace LGPD.Modal
 {
+    [Serializable]
     public class Endereco
     {
         [Key]
