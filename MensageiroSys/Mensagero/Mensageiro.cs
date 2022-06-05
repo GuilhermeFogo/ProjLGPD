@@ -37,6 +37,18 @@ namespace SystemAPI.Mensagero
             ConfigurandoEnviandoEmail(mail);
         }
 
+        public void EnviarEmailComAnexoHTML(string para, string asssunto, string mensagem, string nomeArquivo)
+        {
+            var mail = new MailMessage();
+            mail.IsBodyHtml = true;
+            mail.From = new MailAddress(this.emails.Email);
+            mail.To.Add(new MailAddress(para));
+            mail.Subject = asssunto;
+            mail.Body = mensagem;
+            mail.Attachments.Add(new Attachment(nomeArquivo));
+            ConfigurandoEnviandoEmail(mail);
+        }
+
         public void EnviarEmailHTML(string para, string assunto, string HTML)
         {
             var mail = new MailMessage(this.emails.Email, para,assunto,HTML);

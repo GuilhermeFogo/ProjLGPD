@@ -20,11 +20,13 @@ namespace LGPD.Repository
 
         public void Atualizar(Usuario usuario)
         {
+            usuario.Id = 0;
             this.usuarioDB.Update(usuario);
         }
 
         public void Delete(Usuario usuario)
         {
+            usuario.Id = 0;
             this.usuarioDB.Remove(usuario);
         }
 

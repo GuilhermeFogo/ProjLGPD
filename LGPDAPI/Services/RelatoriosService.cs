@@ -13,17 +13,19 @@ namespace LGPD.Services
 {
     public class RelatoriosService : IRelatorioService
     {
-        private IUsuarioRepository usuarioRepository;
+        private readonly IUsuarioRepository usuarioRepository;
+        private readonly string diretorio;
 
         public RelatoriosService(IUsuarioRepository usuarioRepository)
         {
             this.usuarioRepository = usuarioRepository;
+            this.diretorio = Diretoriobase();
         }
         public FileStream GerarRelatorioUser()
         {
+            
             var dados = this.usuarioRepository.ListarTodos();
-            string nome = $"./Relatorio_Usuario_{DateTime.Now.Day}_{DateTime.Now.Month}_{DateTime.Now.Year}.csv";
-
+            string nome = $"{this.diretorio}/Relatorio_Usuario_{DateTime.Now.Day}_{DateTime.Now.Month}_{DateTime.Now.Year}.csv";
             using (FileStream f = new FileStream(nome, FileMode.Create, FileAccess.Write))
             {
                 using (StreamWriter s = new StreamWriter(f))
@@ -48,6 +50,21 @@ namespace LGPD.Services
                 f.Close();
                 return f;
             }
+        }
+
+        private string Diretoriobase()
+        {
+            string diretoriobase = "./Relatorios";
+            try
+            {
+                Directory.Delete($"{diretoriobase}", true);
+                Directory.CreateDirectory($"{diretoriobase}");
+            }
+            catch (Exception e)
+            {
+                Directory.CreateDirectory($"{diretoriobase}");
+            }
+            return diretoriobase;
         }
     }
 }

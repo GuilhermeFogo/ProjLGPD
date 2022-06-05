@@ -11,5 +11,6 @@ namespace SystemAPI.Mensagero
         void EnviarEmailComAnexo(string para, string asssunto, string mensagem, string nomeArquivo);
 
         void EnviarEmailHTML(string para, string assunto, string HTML);
+        void EnviarEmailComAnexoHTML(string para, string asssunto, string mensagem, string nomeArquivo);
     }
 }

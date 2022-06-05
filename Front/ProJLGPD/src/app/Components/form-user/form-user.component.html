@@ -3,7 +3,7 @@
     <mat-form-field class="w-75">
         <mat-label>Nome usuario</mat-label>
         <input matInput formControlName="nome" placeholder="Nome do usuario">
-    </mat-form-field>
+    </mat-form-field>   
     <br>
     <mat-form-field class="w-75">
         <mat-label>Senha</mat-label>
@@ -16,6 +16,7 @@
     </mat-form-field>
     <br>
     <app-select-role [form]="formuser"></app-select-role>
+    <app-select-ativo [form]="formuser"></app-select-ativo>
     <mat-form-field class="invisible" hidden>
         <input matInput type="number" formControlName="id">
     </mat-form-field>

@@ -17,6 +17,7 @@ namespace LGPD.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RelatorioControler : ControllerBase
     {
         private readonly IRelatorioService relatorio;
@@ -27,6 +28,7 @@ namespace LGPD.Controllers
         }
         
         [HttpGet("Usuario")]
+        [Authorize(Roles ="ADM")]
         public string Get()
         {
             var arquivo =relatorio.GerarRelatorioUser();

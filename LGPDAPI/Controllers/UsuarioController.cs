@@ -71,7 +71,7 @@ namespace LGPD.Controllers
             if (usuarioDTO != null && id > 0)
             {
                 var usarioDB = this.usuarioServices.PesquisarUsuario(id);
-                if (usarioDB == usuarioDTO)
+                if (usarioDB.Id == usuarioDTO.Id)
                 {
                     this.usuarioServices.Atualizar(usuarioDTO);
                     return Ok($"Usuario {usuarioDTO.Nome} Alterado");

@@ -21,7 +21,7 @@ export class UsuariosServiceService extends HelperRequests {
   public ListaUser() {
 
     const header = this.Ajudarequest();
-    return this.http.get(this.url,{
+    return this.http.get<User[]>(this.url,{
       headers: header
     });
   }
@@ -29,23 +29,22 @@ export class UsuariosServiceService extends HelperRequests {
   public SaveUser(usuario: User) {
     const header = this.Ajudarequest();
     console.log(usuario);
-    return this.http.post(this.url, usuario,{
+    return this.http.post<User>(this.url, usuario,{
       headers: header
     });
   }
 
   public UpdateUser(User:User) {
     const header = this.Ajudarequest();
-    return this.http.put(this.url, User,{
+    return this.http.put<User>(this.url+"/"+ User.id, User,{
       headers: header
     });
   }
 
   public Delete(id: number){
     const header = this.Ajudarequest();
-    return this.http.delete(this.url,{
-      headers: header,
-      body: id
+    return this.http.delete(this.url +"/"+ id,{
+      headers: header
     });
   }
 }

@@ -29,7 +29,7 @@ namespace LGPD.Services
                 var usu = this.usuarioRepository.PesquisaUsuario(usuario.Nome);
                 if (usu != null)
                 {
-                    if (usu.Nome == usuario.Nome && usu.Senha == usuario.Senha)
+                    if ((usu.Nome == usuario.Nome && usu.Senha == usuario.Senha) && usu.Ativado == true)
                     {
                         var user = Parsers.ParseUsuarioAuth(usu);
                         return this.autenticacaoService.CriarToken(user);

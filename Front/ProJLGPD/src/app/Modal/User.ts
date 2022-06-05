@@ -3,7 +3,8 @@ export class User {
     readonly nome: string;
     readonly senha: string;
     readonly role: number;
-    readonly email: string
+    readonly email: string;
+    readonly ativado : boolean;
 
     public get Nome(): string {
         return this.nome;
@@ -25,11 +26,18 @@ export class User {
         return this.email;
     }
 
-    constructor({ nome, senha, id, role, email}: { nome: string, senha: string, id: number, role: number, email: string}) {
+    
+    public get Ativado() : boolean {
+        return this.Ativado;
+    }
+    
+
+    constructor({ nome, senha, id, role, email, ativado}: { nome: string, senha: string, id: number, role: number, email: string, ativado: boolean}) {
         this.nome = nome;
         this.senha = senha;
         this.id = id;
         this.role = role;
         this.email = email;
+        this.ativado = ativado;
     }
 }

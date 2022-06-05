@@ -18,7 +18,8 @@ namespace LGPD.Transformar
                 Nome = usuarioDTO.Nome,
                 Role = MyRolesINT(usuarioDTO.Role),
                 Senha = usuarioDTO.Senha,
-                Email = usuarioDTO.Email
+                Email = usuarioDTO.Email,
+                Ativado = usuarioDTO.Ativado
             };
         }
 
@@ -30,7 +31,8 @@ namespace LGPD.Transformar
                 Nome = usuario.Nome,
                 Role = MyRolesstrig(usuario.Role),
                 Senha = usuario.Senha,
-                Email = usuario.Email
+                Email = usuario.Email,
+                Ativado = usuario.Ativado
             };
         }
 
@@ -77,7 +79,8 @@ namespace LGPD.Transformar
                 Nome = usuario.Nome,
                 Role = usuario.Role,
                 Senha = "",
-                Email = usuario.Email
+                Email = usuario.Email,
+                Ativado = usuario.Ativado
             };
         }
 

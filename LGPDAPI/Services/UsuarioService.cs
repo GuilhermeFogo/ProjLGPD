@@ -43,6 +43,7 @@ namespace LGPD.Services
                 var dtohide = Parsers.HidePass(dto);
                 lista.Add(dtohide);
             }
+            lista.Sort();
             return lista;
         }
 

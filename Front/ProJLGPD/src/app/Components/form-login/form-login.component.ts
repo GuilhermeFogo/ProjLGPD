@@ -45,7 +45,8 @@ export class FormLoginComponent implements OnInit {
       nome: this.f.nameUser.value,
       senha: this.f.pass.value,
       role: 0,
-      email: ""
+      email: "",
+      ativado : false
     });
     const expires =  this.cookie.Expires(0,0,2);
     
