@@ -20,14 +20,21 @@ namespace LGPD.Repository
 
         public void Atualizar(Usuario usuario)
         {
-            usuario.Id = 0;
-            this.usuarioDB.Update(usuario);
+            var user = this.usuarioDB.Usuarios.Where((x) => x.Id == usuario.Id).FirstOrDefault();
+            user.Nome = usuario.Nome;
+            user.Role = usuario.Role;
+            user.Ativado = usuario.Ativado;
+            user.Email = usuario.Email;
+
+            this.usuarioDB.Update(user);
+            this.usuarioDB.SaveChanges();
         }
 
         public void Delete(Usuario usuario)
         {
-            usuario.Id = 0;
-            this.usuarioDB.Remove(usuario);
+            var user = this.usuarioDB.Usuarios.Where((x) => x.Id == usuario.Id).FirstOrDefault();   
+            this.usuarioDB.Remove(user);
+            this.usuarioDB.SaveChanges();
         }
 
         public IEnumerable<Usuario> ListarTodos()

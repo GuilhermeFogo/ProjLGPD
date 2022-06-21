@@ -22,14 +22,14 @@ namespace LGPD.Controllers
 
         [Route("[controller]/Pesquisa")]
         [HttpPost]
-        [Authorize(Roles = "Funcionario, ADM")]
+        [Authorize(Roles = "Funcionario, ADM, Gerente")]
         public DatamappingDTO PesquisaTeste([FromBody] DatamappingDTO area)
         {
             return this.DataMappingService.PesquisarPorArea(area.Area);
         }
 
         [HttpPost]
-        [Authorize(Roles = "Funcionario, ADM")]
+        [Authorize(Roles = "Funcionario, ADM, Gerente")]
         public IActionResult Save([FromBody] DatamappingDTO datamappingDTO)
         {
             this.DataMappingService.Save(datamappingDTO);

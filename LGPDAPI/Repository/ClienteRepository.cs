@@ -19,11 +19,26 @@ namespace LGPD.Repository
 
         public void Atualizar(Cliente cliente)
         {
-            this.clientesDB.Update(cliente);        }
+            var cliente_db = this.clientesDB.Clientes.Where((x) =>  x.Id == cliente.Id).FirstOrDefault();
+            cliente_db.Nome = cliente.Nome;
+            cliente_db.Telefone = cliente.Telefone;
+            cliente_db.Email = cliente.Email;
+            cliente_db.Consentimento = cliente.Consentimento;
+            cliente_db.Endereco.Rua = cliente.Endereco.Rua;
+            cliente_db.Endereco.CEP = cliente.Endereco.CEP;
+            cliente_db.Endereco.Bairo = cliente.Endereco.Bairo;
+            cliente_db.Endereco.Complemento = cliente.Endereco.Complemento;
+            
+            this.clientesDB.Update(cliente_db);
+            this.clientesDB.SaveChanges();
+        }
 
         public void Delete(Cliente cliente)
         {
-            this.clientesDB.Remove(cliente);
+
+            var cliente_db = this.clientesDB.Clientes.Where((x) => x.Id == cliente.Id).FirstOrDefault();
+            this.clientesDB.Remove(cliente_db);
+            this.clientesDB.SaveChanges();
         }
 
         public IEnumerable<Cliente> ListarTodos()

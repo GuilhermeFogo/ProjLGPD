@@ -18,14 +18,14 @@ namespace LGPD.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Funcionario, ADM")]
+        [Authorize(Roles = "Funcionario, ADM, Gerente")]
         public IEnumerable<ClienteDTO> ListaTodos()
         {
             return this.clienteService.ListarTodos();
         }
 
         [HttpPost]
-        [Authorize(Roles = "Funcionario, ADM")]
+        [Authorize(Roles = "Funcionario, ADM, Gerente")]
         public IActionResult Post([FromBody] ClienteDTO value)
         {
             if (value != null)

@@ -28,7 +28,7 @@ namespace LGPD.Controllers
         }
         
         [HttpGet("Usuario")]
-        [Authorize(Roles ="ADM")]
+        [Authorize(Roles ="ADM, Gerente")]
         public string Get()
         {
             var arquivo =relatorio.GerarRelatorioUser();
