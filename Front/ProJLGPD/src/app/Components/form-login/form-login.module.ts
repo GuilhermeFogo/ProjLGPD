@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormLoginComponent } from './form-login.component';
 import {MatButtonModule} from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -19,7 +20,8 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ], exports:[FormLoginComponent]
 })
 export class FormLoginModule { }

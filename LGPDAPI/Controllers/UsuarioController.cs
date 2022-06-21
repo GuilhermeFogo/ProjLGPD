@@ -93,7 +93,7 @@ namespace LGPD.Controllers
             {
                 var user = this.usuarioServices.PesquisarUsuario(id);
                 this.usuarioServices.Delete(user);
-                return Ok();
+                return Ok($"Usuario {user.Nome} excluido");
             }
             else
             {

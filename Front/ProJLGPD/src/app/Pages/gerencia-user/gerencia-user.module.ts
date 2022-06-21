@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { GerenciaUserComponent } from './gerencia-user.component';
 import { MenuModule } from 'src/app/Components/menu/menu.module';
 import {MatTableModule} from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -19,7 +20,8 @@ import {MatTableModule} from '@angular/material/table';
     MatDialogModule, 
     MatButtonModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule
   ], exports:[GerenciaUserComponent]
 })
 export class GerenciaUserModule { }

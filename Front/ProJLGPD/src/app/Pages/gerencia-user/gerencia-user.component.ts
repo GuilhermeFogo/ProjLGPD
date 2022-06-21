@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormUserComponent } from 'src/app/Components/form-user/form-user.component';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-gerencia-user',
   templateUrl: './gerencia-user.component.html',
@@ -13,77 +14,81 @@ export class GerenciaUserComponent implements OnInit {
 
   private dialog: MatDialog;
   private request: UsuariosServiceService;
-  displayedColumns: string[] = ['nome','role','email','ativo','Edit'];
+  displayedColumns: string[] = ['nome', 'role', 'email', 'ativo', 'Edit'];
   dataSource!: MatTableDataSource<User>;
-  constructor(dialog: MatDialog, request: UsuariosServiceService) {
+  private snackBar: MatSnackBar;
+  constructor(dialog: MatDialog, request: UsuariosServiceService, _snackBar: MatSnackBar) {
     this.dialog = dialog;
     this.request = request;
-   }
+    this.snackBar = _snackBar;
+  }
 
   ngOnInit(): void {
     this.Lista();
   }
 
-  public Criaruser(){
+  public Criaruser() {
     this.dialog.open(FormUserComponent, {
-      width:'250px',
+      width: '250px',
       data: null
-    }).afterClosed().subscribe(x=>{
-      if(x != undefined){
+    }).afterClosed().subscribe(x => {
+      if (x != undefined) {
         this.postUser(x);
-        console.log(x);
-        
       }
     });
   }
 
 
-  public Atualizar(user:User){
+  public Atualizar(user: User) {
     this.dialog.open(FormUserComponent, {
-      width:'250px',
+      width: '250px',
       data: user
-    }).afterClosed().subscribe(x=>{
-      if(x != undefined){
+    }).afterClosed().subscribe(x => {
+      if (x != undefined) {
         this.putUser(x);
-        console.log(x);
       }
     });
   }
 
-  public Deletar(user:User){
+  public Deletar(user: User) {
     this.deleteUser(user);
   }
 
 
 
 
-  public Lista(){
-    this.request.ListaUser().subscribe(usarios=>{
-      
+  public Lista() {
+    this.request.ListaUser().subscribe(usarios => {
+
       this.dataSource = new MatTableDataSource(usarios);
       console.log(usarios);
-      
-    }, 
-    erro=> console.error(erro))
+
+    },
+      erro => console.error(erro))
   }
 
   private postUser(user: User) {
-    this.request.SaveUser(user).subscribe(x=>{
-      console.log("Cadastro com exito");
-      console.log(x);
+    this.request.SaveUser(user).subscribe(x => {
+      this.snackBar.open("Cadastrado com Exito", "OK");
+    }, e => {
+      this.snackBar.open(e.error.text, "OK");
     })
   }
 
   private putUser(user: User) {
     this.request.UpdateUser(user).subscribe(x => {
-      console.log("Atualizado com exito");
-    }, error => console.log(error))
+      this.snackBar.open("Atualizado com exito", "OK");
+    }, error => {
+      this.snackBar.open(error.error.text, "OK");
+    });
   }
 
   private deleteUser(user: User) {
     this.request.Delete(user.id).subscribe(x => {
-      console.log("Deletado com exito");
-    }, error => console.log(error))
+      this.snackBar.open("Usuario deletado com exito", "OK")
+    }, error => {
+      this.snackBar.open(error.error.text, "OK");
+    });
   }
 
 }

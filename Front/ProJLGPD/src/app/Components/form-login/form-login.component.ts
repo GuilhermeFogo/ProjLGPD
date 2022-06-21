@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../Modal/User';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-form-login',
@@ -18,12 +19,14 @@ export class FormLoginComponent implements OnInit {
   private route: Router;
   private cookie: CookieService;
   private Auth: AuthService;
+  private _snackBar: MatSnackBar
   
-  constructor(fb: FormBuilder, route: Router, CookieService: CookieService, Auth: AuthService) {
+  constructor(fb: FormBuilder, route: Router, CookieService: CookieService, Auth: AuthService, snackBar: MatSnackBar) {
     this.fb = fb;
     this.route = route;
     this.cookie = CookieService
     this.Auth = Auth;
+    this._snackBar = snackBar;
   }
 
   
@@ -53,6 +56,6 @@ export class FormLoginComponent implements OnInit {
     this.Auth.Autenticar(user).subscribe(x=>{
       this.cookie.CreateCookie(x, expires);
       this.route.navigateByUrl("/DashBoard");
-    },e => console.log(e));
+    },e => this._snackBar.open("Tente Novamente","OK"));
   }
 }
