@@ -23,14 +23,14 @@ namespace LGPD.Services
         }
         public FileStream GerarRelatorioUser()
         {
-            
+
             var dados = this.usuarioRepository.ListarTodos();
             string nome = $"{this.diretorio}/Relatorio_Usuario_{DateTime.Now.Day}_{DateTime.Now.Month}_{DateTime.Now.Year}.csv";
             using (FileStream f = new FileStream(nome, FileMode.Create, FileAccess.Write))
             {
                 using (StreamWriter s = new StreamWriter(f))
                 {
-                    string[] titulo = { "Id", "Nome","Role", "Email" };
+                    string[] titulo = { "Id", "Nome", "Role", "Email" };
                     foreach (var item in titulo)
                     {
                         s.Write(item + " |");
@@ -55,12 +55,7 @@ namespace LGPD.Services
         private string Diretoriobase()
         {
             string diretoriobase = "./Relatorios";
-            try
-            {
-                Directory.Delete($"{diretoriobase}", true);
-                Directory.CreateDirectory($"{diretoriobase}");
-            }
-            catch (Exception e)
+            if (!Directory.Exists(diretoriobase))
             {
                 Directory.CreateDirectory($"{diretoriobase}");
             }

@@ -29,12 +29,10 @@ namespace LGPD.Controllers
         
         [HttpGet("Usuario")]
         [Authorize(Roles ="ADM, Gerente")]
-        public string Get()
+        public IActionResult Get()
         {
             var arquivo =relatorio.GerarRelatorioUser();
-            var a2 =File(arquivo.Name, "text/csv");
-            a2.FileDownloadName = a2.FileName;
-            return a2.FileDownloadName;
+            return Ok(arquivo);
         }
     }
 }

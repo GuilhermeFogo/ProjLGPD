@@ -47,11 +47,13 @@ export class GerenciaUserComponent implements OnInit {
       if (x != undefined) {
         this.putUser(x);
       }
+      this.ngOnInit();
     });
   }
 
   public Deletar(user: User) {
     this.deleteUser(user);
+    this.ngOnInit();
   }
 
 
