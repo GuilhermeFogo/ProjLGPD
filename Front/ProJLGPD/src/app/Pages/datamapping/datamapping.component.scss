@@ -1,0 +1,63 @@
+.pageContiner {
+    width: 100%;
+    height: 100%;
+  }
+
+  .activeCell{
+    background-color:  skyblue;;
+  }
+
+  
+  .mat-table {
+    display: table;
+    padding: 0;
+    border: none;
+    width: 100%;
+    > .mat-header-row, > .mat-row {
+      display: table-row;
+      padding: 0 12px;
+      border: 1px solid skyblue;
+      min-height: 24px;
+      background-color: white;        
+      > .mat-header-cell {
+        display: table-cell;
+        border: 1px solid rgba(0, 0, 0, 0.54);
+        padding: 0 0.5em;
+        vertical-align: middle;
+        text-align: center;
+        color: rgba(0, 0, 0, 0.54);
+        font-size: 13px;
+        background-color: skyblue;
+        border-bottom: 1px solid rgba(96, 96, 96, 0.12);
+        cursor: auto;
+      }
+      > .mat-cell {
+        display: table-cell;
+        border: 1px solid skyblue;
+        padding: 0 0.5em;
+        vertical-align: middle;
+        text-align: center;
+        color: black;
+        font-size: 13px;
+       // border-bottom: 1px solid rgba(96, 96, 96, 0.12);
+        cursor: auto;
+      }
+    }
+  }
+
+  .header-value {
+    font-weight: bold;
+    font-size: 1vw;
+    color: rgba(0, 0, 0, 0.54);
+    &:hover {
+      color: rgb(0, 105, 146)
+    }
+  }
+
+  .cell-value {
+    color: black;
+    font-size: 0.8vw;
+    &:hover {
+      color: rgb(0, 105, 146)
+    }
+  }

@@ -1,3 +1,4 @@
+import { DatamappingModule } from './Pages/datamapping/datamapping.module';
 import { ErrorModule } from './Pages/error/error.module';
 import { DashboardModule } from './Pages/dashboard/dashboard.module';
 import { LoginModule } from './Pages/login/login.module';
@@ -20,7 +21,8 @@ import { GerenciaUserModule } from './Pages/gerencia-user/gerencia-user.module';
     BrowserAnimationsModule,
     DashboardModule,
     ErrorModule,
-    GerenciaUserModule
+    GerenciaUserModule,
+    DatamappingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

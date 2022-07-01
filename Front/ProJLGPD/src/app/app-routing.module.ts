@@ -6,6 +6,7 @@ import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
+import { DatamappingComponent } from './Pages/datamapping/datamapping.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
   },
   {path:'DashBoard', component: DashboardComponent, canActivate: [GuardService]},
   {path:'Users', component: GerenciaUserComponent, canActivate: [GuardService]},
-
+  {path:'DataMapping', component: DatamappingComponent, canActivate:[GuardService]},
   {path:'**', component: ErrorComponent}
 
 ];
