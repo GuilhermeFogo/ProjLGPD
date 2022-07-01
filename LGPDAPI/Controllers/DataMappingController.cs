@@ -20,20 +20,38 @@ namespace LGPD.Controllers
             this.DataMappingService = dataMappingService;
         }
 
-        [Route("[controller]/Pesquisa")]
+        [Route("[controller]/Listar")]
+        [HttpGet]
+        [Authorize(Roles = "Funcionario, ADM, Gerente")]
+        public IActionResult ListaTodos()
+        {
+
+            return Ok(this.DataMappingService.ListarTudo());
+        }
+
+        [Route("[controller]/PesquisaEmpresaeArea")]
         [HttpPost]
         [Authorize(Roles = "Funcionario, ADM, Gerente")]
-        public DatamappingDTO PesquisaTeste([FromBody] DatamappingDTO area)
+        public IActionResult PesquisaTeste([FromBody] DatamappingDTO area)
         {
-            return this.DataMappingService.PesquisarPorArea(area.Area);
+            var dados = this.DataMappingService.PesquisarPorEmpresaeArea(area);
+            return Ok(dados);
         }
 
         [HttpPost]
         [Authorize(Roles = "Funcionario, ADM, Gerente")]
         public IActionResult Save([FromBody] DatamappingDTO datamappingDTO)
         {
-            this.DataMappingService.Save(datamappingDTO);
-            return Ok();
+            if (!string.IsNullOrEmpty(datamappingDTO.Area) && !string.IsNullOrEmpty(datamappingDTO.Empresa) && !string.IsNullOrEmpty(datamappingDTO.Descricao_processo) &&
+                !string.IsNullOrEmpty(datamappingDTO.Dados_regulares) && !string.IsNullOrEmpty(datamappingDTO.Dados_Senssiveis))
+            {
+                this.DataMappingService.Save(datamappingDTO);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
     }

@@ -140,10 +140,35 @@ namespace LGPD.Transformar
                     Id = dataMapping.IdProceso,
                     Macroprocesso = dataMapping.Nome,
                     Operador = dataMapping.Operador,
-                    Subprocesso = dataMapping.Subproceso_nome
+                    Subprocesso = dataMapping.Subproceso_nome,
+                    Area_controle = dataMapping.Area
 
                 }
             };
+        }
+
+
+        public static IEnumerable<DatamappingDTO> ParseClass2DTO(IEnumerable<DataMapping> dataMapping)
+        {
+            var datalista = new List<DatamappingDTO>();
+            foreach (var item in dataMapping)
+            {
+                var data = ParseClass2DTO(item);
+                datalista.Add(data);
+            }
+            return datalista;
+        }
+
+
+        public static IEnumerable<DataMapping> ParseDTO2Class(IEnumerable<DatamappingDTO> dataMapping)
+        {
+            var datalista = new List<DataMapping>();
+            foreach (var item in dataMapping)
+            {
+                var data = ParseDTO2Class(item);
+                datalista.Add(data);
+            }
+            return datalista;
         }
 
 

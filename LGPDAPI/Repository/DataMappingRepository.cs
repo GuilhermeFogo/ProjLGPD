@@ -26,24 +26,24 @@ namespace LGPD.Repository
             this.dataContext.Remove(dataMapping);
         }
 
-        public DataMapping Pesquisa_PorArea(string area)
+        public IEnumerable<DataMapping> Pesquisa_PorArea(string area)
         {
             var pesquisa = this.JoinDatamapping().Where(x => x.Area == area);
-            return pesquisa.AsEnumerable().FirstOrDefault();
+            return pesquisa.AsEnumerable().ToList();
         }
 
-        public DataMapping Pesquisa_PorEmpresa(string empresa)
+        public IEnumerable<DataMapping> Pesquisa_PorEmpresa(string empresa)
         {
             var pesquisa = this.JoinDatamapping().Where(x => x.Empresa == empresa);
-            return pesquisa.AsEnumerable().FirstOrDefault();
+            return pesquisa.AsEnumerable().ToList();
         }
 
-        public DataMapping Pesquisa_PorEmpresa_e_Area(string empresa, string area)
+        public IEnumerable<DataMapping> Pesquisa_PorEmpresa_e_Area(string empresa, string area)
         {
             var pesquisa = this.JoinDatamapping().Where(x => x.Empresa == empresa && x.Area == area);
 
-            return pesquisa.AsEnumerable().FirstOrDefault();
-            
+            return pesquisa.AsEnumerable().ToList();
+
         }
 
         public void Save(DataMapping dataMapping)
@@ -55,37 +55,39 @@ namespace LGPD.Repository
         private IQueryable<DataMapping> JoinDatamapping()
         {
             var JoinDados = this.dataContext.DataMappings.Join(
-                this.dataContext.Dados,
-                (mapp => mapp.Id_DataMapping),(dado => dado.id_dado),
-                (mapp, dado)=> new { mapp, dado}
+                this.dataContext.Processos,
+                (mapp => mapp.Processo.Id), (processo => processo.Id),
+                (mapp, processo) => new { mapp, processo }
                 ).Join(
-                this.dataContext.Processos,(mapps => mapps.mapp.Id_DataMapping), (process => process.Id),
-                (mapps, process)=> new  DataMapping{
+                this.dataContext.Dados, (processos => processos.processo.Dado.id_dado), (dado => dado.id_dado),
+                (mapps, dado) => new DataMapping
+                {
                     Area = mapps.mapp.Area,
                     Empresa = mapps.mapp.Empresa,
-                    Id_DataMapping = mapps.mapp.Id_DataMapping, 
+                    Id_DataMapping = mapps.mapp.Id_DataMapping,
                     Responsavel = mapps.mapp.Responsavel,
                     Processo = new Processo()
                     {
-                        Armazenamento_Digital = process.Armazenamento_Digital,
-                        Armazenamento_Fisico = process.Armazenamento_Fisico,
-                        BaseLegal = process.BaseLegal,
-                        Compartilhamento_Externo = process.Compartilhamento_Externo,
-                        Compartilhamento_interno = process.Compartilhamento_interno,
-                        Controlador  =process.Controlador,
+                        Armazenamento_Digital = mapps.processo.Armazenamento_Digital,
+                        Armazenamento_Fisico = mapps.processo.Armazenamento_Fisico,
+                        BaseLegal = mapps.processo.BaseLegal,
+                        Compartilhamento_Externo = mapps.processo.Compartilhamento_Externo,
+                        Compartilhamento_interno = mapps.processo.Compartilhamento_interno,
+                        Controlador = mapps.processo.Controlador,
                         Dado = new Dados()
                         {
-                            Dados_regulares = process.Dado.Dados_regulares,
-                            Dados_Senssiveis = process.Dado.Dados_Senssiveis,
-                            id_dado = process.Dado.id_dado
+                            Dados_regulares = dado.Dados_regulares,
+                            Dados_Senssiveis = dado.Dados_Senssiveis,
+                            id_dado = dado.id_dado
                         },
-                        descricaoBase = process.descricaoBase,
-                        Descricao_processo = process.Descricao_processo,
-                        Destino_final = process.Destino_final,
-                        Id = process.Id,
-                        Macroprocesso =process.Macroprocesso,
-                        Operador = process.Operador,
-                        Subprocesso = process.Subprocesso
+                        descricaoBase = mapps.processo.descricaoBase,
+                        Descricao_processo = mapps.processo.Descricao_processo,
+                        Destino_final = mapps.processo.Destino_final,
+                        Id = mapps.processo.Id,
+                        Macroprocesso = mapps.processo.Macroprocesso,
+                        Operador = mapps.processo.Operador,
+                        Subprocesso = mapps.processo.Subprocesso,
+                        Area_controle = mapps.processo.Area_controle
                     }
                 }
                 );
@@ -97,7 +99,7 @@ namespace LGPD.Repository
         public IEnumerable<DataMapping> ListarTodos()
         {
             return this.JoinDatamapping().AsEnumerable();
-            
+
         }
     }
 }

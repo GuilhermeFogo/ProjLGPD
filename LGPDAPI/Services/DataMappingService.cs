@@ -19,14 +19,35 @@ namespace LGPD.Services
             this.dataMappingRepository = dataMappingRepository;
         }
 
-        public DatamappingDTO PesquisarPorArea(string area)
+        public IEnumerable<DatamappingDTO> ListarTudo()
         {
-            var pesquisaDatamapping =  this.dataMappingRepository.Pesquisa_PorArea(area);
+            var todos = this.dataMappingRepository.ListarTodos();
+            return Parsers.ParseClass2DTO(todos);
+        }
+
+        public IEnumerable<DatamappingDTO> PesquisarPorArea(DatamappingDTO datamappingDTO)
+        {
+            var pesquisaDatamapping = this.dataMappingRepository.Pesquisa_PorArea(datamappingDTO.Area);
+            if (pesquisaDatamapping == null)
+            {
+                return null;
+            }
             return Parsers.ParseClass2DTO(pesquisaDatamapping);
+        }
+
+        public IEnumerable<DatamappingDTO> PesquisarPorEmpresaeArea(DatamappingDTO datamappingDTO)
+        {
+            var pesquisa = this.dataMappingRepository.Pesquisa_PorEmpresa_e_Area(datamappingDTO.Empresa, datamappingDTO.Area);
+            if (pesquisa == null)
+            {
+                return null;
+            }
+            return Parsers.ParseClass2DTO(pesquisa);
         }
 
         public void Save(DatamappingDTO dataMapping)
         {
+
             this.dataMappingRepository.Save(Parsers.ParseDTO2Class(dataMapping));
         }
     }

@@ -14,6 +14,7 @@ namespace LGPD.Modal
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Macroprocesso { get; set; }
+        public string Area_controle { get; set; }
         public string Subprocesso { get; set; }
         public string Descricao_processo { get; set; }
         public Dados Dado { get; set; }

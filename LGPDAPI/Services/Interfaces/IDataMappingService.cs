@@ -11,6 +11,9 @@ namespace LGPD.Services.Interfaces
     {
         public void Save(DatamappingDTO dataMapping);
 
-        public DatamappingDTO PesquisarPorArea(string area);
+        public IEnumerable<DatamappingDTO> PesquisarPorEmpresaeArea(DatamappingDTO datamappingDTO);
+        public IEnumerable<DatamappingDTO> PesquisarPorArea(DatamappingDTO datamappingDTO);
+        public IEnumerable<DatamappingDTO> ListarTudo();
+
     }
 }
