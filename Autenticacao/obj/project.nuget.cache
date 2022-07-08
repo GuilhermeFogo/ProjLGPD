@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "15EL7Syv3xYvxf/lx0h8w/OKFKGG2+QN8v+bQwXUlwoOXjl9dKUlrd+phc/rmv5Ye4au88OIj1soQGv2LYe6BA==",
+  "dgSpecHash": "EMd2XbeNKHYoNthRanRxQKmp2pVWU3BL6VHclHN1Dx7EiYm2/WXPZSPJ0f5vEeCOMiNT58eUTMTNFyExcfWNKQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Guilherme\\Desktop\\MeuTreinamento\\Projeto LGPD\\Autenticacao\\Autenticacao.csproj",
+  "projectFilePath": "C:\\Users\\Guilherme\\Desktop\\Projeto .net\\ProjLGPD\\Autenticacao\\Autenticacao.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Guilherme\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\Guilherme\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

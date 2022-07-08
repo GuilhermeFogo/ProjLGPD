@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0yHVmMCCnbu+XpRPY7L+jD9mWEx6aS3UfLdB8clxiV7NkRFf8U0gpROvevN99+5Fk0hn/ZnBiOaitJXCZvZJRA==",
+  "dgSpecHash": "IWv9tWvV+bRHhLuePWQsVSoBKT65JEhQT3HcufVfFQaOdTwmELQ8P/GmjT9MbXwqVvKF0pnTRuHAhQnElCmTPg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Guilherme\\Desktop\\MeuTreinamento\\Projeto LGPD\\LGPDAPI\\LGPD.csproj",
+  "projectFilePath": "C:\\Users\\Guilherme\\Desktop\\Projeto .net\\ProjLGPD\\LGPDAPI\\LGPD.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Guilherme\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Guilherme\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

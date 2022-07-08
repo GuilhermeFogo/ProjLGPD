@@ -1,46 +1,32 @@
 <app-menu></app-menu>
+<button mat-mini-fab color="accent" (click)="Criaruser()" class="bgcolor">
+  <mat-icon>plus_one</mat-icon>
+</button>
+<table mat-table [dataSource]="dataSource">
 
-<!-- <div class="pageContiner">
+  <ng-container matColumnDef="Empresa">
+    <th mat-header-cell *matHeaderCellDef> Empresa </th>
+    <td mat-cell *matCellDef="let element"> {{element.empresa}} </td>
+  </ng-container>
 
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="Area">
+    <th mat-header-cell *matHeaderCellDef> Area </th>
+    <td mat-cell *matCellDef="let element"> {{element.area}} </td>
+  </ng-container>
 
-      <ng-container matColumnDef=" ">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let row; let rIndex = index;">
-            <a class="header-value"> {{header}} </a>
-             Delete a row button
-            <button mat-icon-button (click)="deleteRow(rIndex)">
-              <mat-icon>delete</mat-icon>
-            </button>
-            add a row button
-            <button mat-icon-button (click)="addRow(rIndex)">
-              <mat-icon>add</mat-icon>
-            </button>
-          {{rIndex + 1}}
-        </mat-cell>
-      </ng-container>
+  <ng-container matColumnDef="Responsavel">
+    <th mat-header-cell *matHeaderCellDef> Responsavel </th>
+    <td mat-cell *matCellDef="let element"> {{element.responsavel}} </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="Edit">
+    <th mat-header-cell *matHeaderCellDef> Ações </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-flat-button color="" (click)="Atualizar(element)">Editar</button>
+      <button mat-flat-button color="warn" (click)="Deletar(element)">Deletar</button>
+    </td>
+  </ng-container>
 
-      <ng-container *ngFor="let header of displayedColumns  | slice:1:displayedColumns.length; index as cindex" >
-        <mat-header-cell *matHeaderCellDef>
-          
-          <a class="header-value"> {{header}} </a>
-          Delete button
-          <button mat-icon-button (click)="deleteColumn(cindex)">
-            <mat-icon>delete</mat-icon>
-          </button>
-          add button
-          <button mat-icon-button (click)="addColumn(cindex)">
-            <mat-icon>add</mat-icon>
-          </button>
-
-        </mat-header-cell>
-        <mat-cell *cdkCellDef="let element">
-            <a class="cell-value"> {{element[cindex]}} </a>
-        </mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-
-</div> -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
